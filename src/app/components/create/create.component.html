@@ -1,0 +1,57 @@
+<div class="container">
+    <h2>{{title}}</h2>
+
+    <div class="mesage success" *ngIf="status == 'success'">
+        El proyecto se ha creado correctamente, puedes <a href="#"> verlo aqui</a>
+    </div>
+
+    <div class="mesage failed" *ngIf="status == 'failed'">
+        El proyecto no se ha creado correctamente
+    </div>
+
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">
+        <p>
+            <label for="name">Nombre</label>
+            <input type="text" name="Name" #name="ngModel" [(ngModel)]="proyect.Name" required/>
+
+            <span class="from-erro" *ngIf="name.touched && !name.valid">
+                El Nombre es oblicatorio
+            </span>
+        </p>
+
+        <p>
+            <label for="Descripcion">Descripcion</label>
+            <textarea name="Descripcion" #Descripcion="ngModel" [(ngModel)]="proyect.Descripcion" required></textarea>
+            <span class="from-erro" *ngIf="Descripcion.touched && !Descripcion.valid">
+                La Descripcion es obligatoria
+            </span>
+        </p>
+        <p>
+            <label for="Categoria">Categoria</label>
+            <input type="text" name="Categoria" #Categoria="ngModel" [(ngModel)]="proyect.Categoria" required/>
+            <span class="from-erro" *ngIf="Categoria.touched && !Categoria.valid">
+                La Categoria es obligatoria
+            </span>
+        </p>
+        <p>
+            <label for="Lenguages">Lenguages</label>
+            <input type="text" name="Lenguages" #Lenguages="ngModel" [(ngModel)]="proyect.Lenguages" required/>
+            <span class="from-erro" *ngIf="Lenguages.touched && !Lenguages.valid">
+                El lenguaje es obligatoria
+            </span>
+        </p>
+        <p>
+            <label for="year">Año de lanzamiento</label>
+            <input type="text" name="year" #year="ngModel" [(ngModel)]="proyect.year" required/>
+            <span class="from-erro" *ngIf="year.touched && !year.valid">
+                El año es obligatoria
+            </span>
+        </p>
+        <p>
+            <label for="Imge">Imagen del proyecto</label>
+            <input type="file" name="image" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
+        </p>
+        <input type="submit" value="Enviar" [disabled]="!projectForm.form.valid"/>
+    </form>
+
+</div>
